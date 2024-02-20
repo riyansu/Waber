@@ -6,7 +6,7 @@ export const prerender = true
 ---
 
 <script>
-    let lang:string = navigator.language
+    let lang:string = (navigator.language=="en")?"en":"ja"
     const ui:{[language:string]:{[key:string]:string}} = {
         ja:{
             concept:"手軽なサイト作りを全ての人へ。",
@@ -26,7 +26,7 @@ export const prerender = true
     }
     window.onfocus = ()=>{
         if(lang!==navigator.language){
-            lang = navigator.language
+            lang = (navigator.language=="en")?"en":"ja"
             for(let i in ui[lang])document.getElementById(i)!.textContent = ui[lang][i]
         }
     }
