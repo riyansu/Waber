@@ -1,8 +1,60 @@
 ---
 import Layout from '../layouts/Layout.astro'
-
+import { Image } from 'astro:assets'
+import title from '../assets/title.svg'
+export const prerender = true
 ---
 
-<Layout title="Welcome" className='bg-slate-300'>
-    
+<script>
+    let lang:string = navigator.language
+    const ui:{[language:string]:{[key:string]:string}} = {
+        ja:{
+            concept:"手軽なサイト作りを全ての人へ。",
+            setup:"セットアップを開始",
+            quick:"クイックスタート",
+            docs:"ドキュメント"
+        },en:{
+            concept:"Easy Site Creation for Everyone.",
+            setup:"Start Setup",
+            quick:"Quick Start",
+            docs:"Documentation"
+        }
+    }
+    window.onload=()=>{
+        for(let i in ui[lang])document.getElementById(i)!.textContent = ui[lang][i]
+        document.getElementById("main")!.style.removeProperty("visibility")
+    }
+    window.onfocus = ()=>{
+        if(lang!==navigator.language){
+            lang = navigator.language
+            for(let i in ui[lang])document.getElementById(i)!.textContent = ui[lang][i]
+        }
+    }
+</script>
+<Layout title="Welcome" className='bg-slate-200 dark:bg-slate-700 text-gray-800 dark:text-gray-50 overflow-hidden'>
+    <div class="h-[100lvh] flex justify-center items-center" style="visibility:hidden" id="main">
+        <div class="text-center w-auto">
+            <div class="flex justify-center mb-4 @tb:mb-10">
+                <Image src={title} alt="WABER" class="w-2/3"></Image>
+            </div>
+            <div class="text-xl @mb:text-2xl @tb:text-4xl @lt:text-5xl @pc:text-6xl @dp:text-8xl font-semibold text-center mb-6 @tb:mb-14" id="concept" />
+            <a href="./setup" class="rounded-full" tabindex="-1">
+                <button class="w-4/5 @mb:3/4 @tb:w-2/3 shadow h-10 @mb:h-12 @lt:h-14 border-blue-400 border-2 bg-blue-400 text-white hover:opacity-80 transition duration-200 text-xl @lt:text-2xl rounded-full outline-none focus:outline-2 focus:outline-offset-4 focus:outline-blue-300 focus:opacity-80 mb-4 @tb:mb-6 @lt:mb-8" id="setup"></button>
+            </a>
+            <a href="./quick" class="rounded-full" tabindex="-1">
+                <button class="w-4/5 @mb:3/4 @tb:w-2/3 shadow h-10 @mb:h-12 @lt:h-14 border-blue-400 border-2 bg-transparent hover:bg-blue-400 text-blue-400 hover:text-white hover:opacity-80 transition duration-200 text-xl @lt:text-2xl rounded-full outline-none focus:outline-2 focus:outline-offset-4 focus:outline-blue-300 focus:bg-blue-400 focus:text-white focus:opacity-80" id="quick"></button>
+            </a>
+        </div>
+    </div>
+    <div class="absolute left-5 bottom-1 text-lg @mb:text-xl font-light">
+        Ver.0.0.0
+    </div>
+    <div class="absolute right-5 bottom-1 text-lg @mb:text-xl">
+        <a href="./docs" class="outline-none focus:outline-2 focus:outline-offset-4 focus:outline-blue-300 rounded-full text-blue-400" id="docs"></a>
+    </div>
 </Layout>
+<style>
+    img{
+        @apply select-none pointer-events-none
+    }
+</style>

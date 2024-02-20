@@ -1,14 +1,14 @@
 ---
 interface Props {
 	title?: string;
+	className?: string;
     transition?: TransitionAnimationValue;
 }
 
-const { title,transition } = Astro.props;
+const { title,transition,className } = Astro.props;
 
 import { ViewTransitions } from 'astro:transitions';
 import type { TransitionAnimationValue } from 'astro';
-import { defineMiddleware } from 'astro:middleware';
 ---
 <!doctype html>
 <html>
@@ -18,10 +18,10 @@ import { defineMiddleware } from 'astro:middleware';
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Waber {title && title}</title>
+		<title>Waber {title && ` - ${title}`}</title>
 		{transition && <ViewTransitions/> }
 	</head>
-	<body transition:animate={transition ? transition:'none'} class="overflow-hidden h-[100lvh] w-[100lvh]">
+	<body transition:animate={transition ? transition:'none'} class={`overflow-hidden ${className}`}>
 		<slot />
 	</body>
 </html>
