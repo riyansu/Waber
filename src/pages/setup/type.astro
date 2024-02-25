@@ -1,0 +1,67 @@
+---
+import SetupTemplate from '../../templates/SetupTemplate.astro'
+const lang = Astro.cookies.get("setup-language")?.value
+const preset = Astro.cookies.get("setup-preset")?.value
+const type = Astro.cookies.get("setup-type")?.value
+if(!Astro.cookies.has("setup-language")||!Astro.cookies.has("setup-preset"))return Astro.redirect("./preset")
+const ja = lang==="ja"
+---
+<SetupTemplate title={ja?"タイプを選んでください。":"Please select a type."} prev="javascript:history.back()" next="./type" lang={lang!} disabled={!Astro.cookies.has("setup-type")}>
+    <script>
+        const get = document.cookie.match(/setup-type\=([^\;]*)\;*/)!
+        let selected = get?get[1].slice(1,-1):""
+        const btn = document.getElementById("next") as HTMLButtonElement
+        document.addEventListener('astro:after-swap',()=>{
+            const btn = document.getElementById("next") as HTMLButtonElement
+            document.getElementById("Stable")!.onclick = ()=>{
+                btn.disabled = false
+                select("Stable")
+            }
+            document.getElementById("Beta")!.onclick = ()=>{
+                btn.disabled = false
+                select("Beta")
+            }
+            if(selected!="")select(selected)
+        })
+        window.addEventListener('focus',()=>{
+            document.getElementById(selected)!.style.backgroundColor = window.matchMedia('(prefers-color-scheme: dark)').matches?"#708ab0":"#d0ddf0"
+        })
+        function select(target:string){
+            try{
+                if(selected!=""){
+                    document.getElementById(selected)!.style.removeProperty("background-color")
+                    document.getElementById(selected)!.style.removeProperty("border")
+                    document.getElementById(selected)!.style.removeProperty("outline")
+                }
+                selected = target
+                document.getElementById(target)!.style.backgroundColor = window.matchMedia('(prefers-color-scheme: dark)').matches?"#708ab0":"#d0ddf0"
+                document.getElementById(target)!.style.outline = "none"
+                document.getElementById(target)!.style.border = "solid 3px #99bbff"
+                document.cookie = `setup-type="${target}";max-age=86400;path=/`
+            }catch{return}
+        }
+        document.getElementById("Stable")!.onclick = ()=>{
+            btn.disabled = false
+            select("Stable")
+        }
+        document.getElementById("Beta")!.onclick = ()=>{
+            btn.disabled = false
+            select("Beta")
+        }
+        if(selected!="")select(selected)
+    </script>
+    <div class="p-1 @tb:p-2 h-80 w-full">
+        <button class="h-full border-gray-300 hover:bg-slate-200 dark:hover:bg-slate-500 border-4 rounded-md w-full text-lg @mb:text-xl @tb:text-2xl duration-300 outline-none focus:outline outline-offset-2 focus:outline-blue-300" id="Stable">
+            <div class="text-4xl">Stable</div>
+            <hr class="border-gray-400 mx-5 my-1">
+            {ja?<>安定版です。<br>動作の安定性が確認できた機能のみを利用することができます。</>:<>This is the stable version. <br>Only functions that have been confirmed to be stable are available.</>}
+        </button>
+    </div>
+    <div class="p-1 @tb:p-2 h-80 w-full">
+        <button class="h-full border-gray-300 hover:bg-slate-200 dark:hover:bg-slate-500 border-4 rounded-md w-full text-lg @mb:text-xl @tb:text-2xl duration-300 outline-none focus:outline outline-offset-2 focus:outline-blue-300" id="Beta">
+            <div class="text-4xl">Beta</div>
+            <hr class="border-gray-400 mx-5 my-1">
+            {ja?<>ベータ版です。<br>最新の機能を利用できますが、バグが発生する可能性が高いです。</>:<>This is the beta version. <br>The latest features are available, but bugs are likely to occur.</>}
+        </button>
+    </div>
+</SetupTemplate>
