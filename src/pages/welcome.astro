@@ -24,7 +24,7 @@ export const prerender = true
         for(let i in ui[lang])document.getElementById(i)!.textContent = ui[lang][i]
         document.getElementById("main")!.style.removeProperty("visibility")
         document.getElementById("setup")!.onclick=()=>{
-            document.cookie = `setup-language="${navigator.language}";max-age=86400`
+            document.cookie = `setup-language="${navigator.language}";max-age=86400;path=/`
         }
     }
     window.onfocus = ()=>{

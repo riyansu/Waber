@@ -3,7 +3,7 @@ import SetupTemplate from '../../templates/SetupTemplate.astro'
 const presets = ["Trial","Entry","Standard","Suite","Pro"]
 const lang = Astro.cookies.get("setup-language")?.value
 const preset = Astro.cookies.get("setup-preset")?.value
-// if(!Astro.cookies.has("setup-language"))return Astro.redirect("../welcome")
+if(!Astro.cookies.has("setup-language"))return Astro.redirect("../welcome")
 const ja = lang==="ja"
 ---
 <SetupTemplate title={ja?"プリセットを選んでください。":"Please select a preset."} prev="../welcome" next="./type" lang={lang!} disabled={!Astro.cookies.has("setup-preset")}>
