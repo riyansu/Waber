@@ -1,10 +1,9 @@
 ---
 import SetupTemplate from '../../templates/SetupTemplate.astro'
-const presets = ["Trial","Entry","Standard","Suite","Pro"]
+const preset = ["Trial","Entry","Standard","Suite","Pro"]
 const lang = Astro.cookies.get("setup-language")?.value
-const preset = Astro.cookies.get("setup-preset")?.value
 if(!Astro.cookies.has("setup-language"))return Astro.redirect("../welcome")
-const ja = lang==="ja"
+const ja = lang==="ja"||lang==="ja-JP"
 ---
 <SetupTemplate title={ja?"プリセットを選んでください。":"Please select a preset."} prev="../welcome" next="./type" lang={lang!} disabled={!Astro.cookies.has("setup-preset")}>
     <script>
@@ -53,16 +52,16 @@ const ja = lang==="ja"
         if(selected!="")select(selected)
     </script>
     <div class="pr-2 w-1/3">
-        {presets.map(e => 
+        {preset.map(e => 
             <button class="w-full @hs:h-8 h-16 text-xl @hs:text-lg @lt:text-2xl border-b-2 border-gray-300 hover:bg-slate-200 dark:hover:bg-slate-500 rounded duration-300 outline-none focus:outline -outline-offset-1 focus:outline-blue-300" id={e} transition:persist>{e}</button>
         )}
     </div>
     <div class="border-l border-gray-400 pl-2 w-2/3">
         <div class="h-full">
-            <div id="presetHead" class="h-10 @hs:h-8 text-2xl @hs:text-xl @mb:text-3xl animate-fadein">{preset}</div>
+            <div id="presetHead" class="h-10 @hs:h-8 text-2xl @hs:text-xl @mb:text-3xl animate-fadein"></div>
             <hr class="border-slate-300 py-1">
             <div class="text-left text-base @hs:text-sm @tb:text-xl flex justify-center" id="presetBody">
-                <div id="trialDetail" class="animate-slidein" style={`display:${preset==="Trial"?"block":"none"}`}>
+                <div id="trialDetail" class="animate-slidein" style="display:none">
                     {ja?<>
                     Waberを体験していただくことを重視したプリセットです。<br/>
                     拡張機能などが入っておらず、シンプルな状態になっています。<br/>
@@ -73,7 +72,7 @@ const ja = lang==="ja"
                     You can use Waber as it is.
                     </>}
                 </div>
-                <div id="entryDetail" class="animate-slidein" style={`display:${preset==="Entry"?"block":"none"}`}>
+                <div id="entryDetail" class="animate-slidein" style="display:none">
                     {ja?<>
                     Webサイト作りに入門することを重視したプリセットです。<br/>
                     細かな説明を表示するなど、様々な拡張機能が入っており、<br/>
@@ -83,7 +82,7 @@ const ja = lang==="ja"
                     It includes a variety of extensions, such as displaying detailed descriptions, to It supports beginners in their learning. <br/>
                     </>}
                 </div>
-                <div id="standardDetail" class="animate-slidein" style={`display:${preset==="Standard"?"block":"none"}`}>
+                <div id="standardDetail" class="animate-slidein" style="display:none">
                     {ja?<>
                     Webサイト作りが趣味の方などに向いたプリセットです。<br/>
                     ある程度の拡張機能がプリインストールされており、<br/>
@@ -94,7 +93,7 @@ const ja = lang==="ja"
                     It is designed to be easy to use for everyone.
                     </>}
                 </div>
-                <div id="suiteDetail" class="animate-slidein" style={`display:${preset==="Suite"?"block":"none"}`}>
+                <div id="suiteDetail" class="animate-slidein" style="display:none">
                     {ja?<>
                     Webサイト作りが得意な人に向いたプリセットです。<br/>
                     Waber固有のオリジナルな概念等を削ぎ落とし、<br/>
@@ -104,7 +103,7 @@ const ja = lang==="ja"
                     The emphasis is on ease of use, with the original Waber concepts and other features stripped away and focus on ease of use.
                     </>}
                 </div>
-                <div id="proDetail" class="animate-slidein" style={`display:${preset==="Pro"?"block":"none"}`}>
+                <div id="proDetail" class="animate-slidein" style="display:none">
                     {ja?<>
                     本格的なWebサイト作りに向いたプリセットです。<br/>
                     Suiteに加え、オリジナルな機能を多数有効化し、<br/>

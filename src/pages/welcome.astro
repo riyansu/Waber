@@ -29,7 +29,7 @@ export const prerender = true
     }
     window.onfocus = ()=>{
         if(lang!==navigator.language){
-            lang = (navigator.language=="ja")?"ja":"en"
+            lang = (navigator.language=="ja"||navigator.language=="ja-JP")?"ja":"en"
             for(let i in ui[lang])document.getElementById(i)!.textContent = ui[lang][i]
         }
     }
