@@ -50,16 +50,16 @@ const ja = lang==="ja"
         }
         if(selected!="")select(selected)
     </script>
-    <div class="p-1 @tb:p-2 h-80 w-full">
-        <button class="h-full border-gray-300 hover:bg-slate-200 dark:hover:bg-slate-500 border-4 rounded-md w-full text-lg @mb:text-xl @tb:text-2xl duration-300 outline-none focus:outline outline-offset-2 focus:outline-blue-300" id="Stable">
-            <div class="text-4xl">Stable</div>
+    <div class="p-1 @tb:p-2 h-80 @hs:h-44 @hs:py-0.3 w-full">
+        <button class="h-full border-gray-300 hover:bg-slate-200 dark:hover:bg-slate-500 border-4 rounded-md w-full text-lg @hs:text-base @mb:text-xl @tb:text-2xl duration-300 outline-none focus:outline outline-offset-2 focus:outline-blue-300" id="Stable">
+            <div class="text-3xl @hs:text-2xl @mb:text-4xl">Stable</div>
             <hr class="border-gray-400 mx-5 my-1">
             {ja?<>安定版です。<br>動作の安定性が確認できた機能のみを利用することができます。</>:<>This is the stable version. <br>Only functions that have been confirmed to be stable are available.</>}
         </button>
     </div>
-    <div class="p-1 @tb:p-2 h-80 w-full">
-        <button class="h-full border-gray-300 hover:bg-slate-200 dark:hover:bg-slate-500 border-4 rounded-md w-full text-lg @mb:text-xl @tb:text-2xl duration-300 outline-none focus:outline outline-offset-2 focus:outline-blue-300" id="Beta">
-            <div class="text-4xl">Beta</div>
+    <div class="p-1 @tb:p-2 h-80 @hs:h-44 @hs:py-0.3 w-full">
+        <button class="h-full border-gray-300 hover:bg-slate-200 dark:hover:bg-slate-500 border-4 rounded-md w-full text-lg @hs:text-base @mb:text-xl @tb:text-2xl duration-300 outline-none focus:outline outline-offset-2 focus:outline-blue-300" id="Beta">
+            <div class="text-3xl @hs:text-2xl @mb:text-4xl">Beta</div>
             <hr class="border-gray-400 mx-5 my-1">
             {ja?<>ベータ版です。<br>最新の機能を利用できますが、バグが発生する可能性が高いです。</>:<>This is the beta version. <br>The latest features are available, but bugs are likely to occur.</>}
         </button>

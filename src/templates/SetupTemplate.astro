@@ -25,14 +25,14 @@ const { title,prev,next,lang,disabled } = Astro.props
             <div class="flex justify-center pt-4">
                 <div class="w-11/12 @tb:w-3/4 @lt:w-2/3 @mb:flex">
                     <div class="flex w-full justify-center @mb:justify-start">
-                        <a href={prev} class="rounded-lg w-full @mb:w-4/5 @tb:w-3/5 @lt:w-1/2 h-12 outline-none mb-5 @tb:mb-0" tabindex="-1" aria-disabled="true">
+                        <a href={prev} class="rounded-lg w-full @mb:w-4/5 @tb:w-3/5 @lt:w-1/2 h-12 @hs:h-10 outline-none mb-5 @tb:mb-0" tabindex="-1" aria-disabled="true">
                             <button class="w-full h-full rounded-lg border-2 border-blue-400 text-blue-400 text-xl outline-none focus:outline-2 focus:outline-offset-2 focus:outline-blue-300 hover:opacity-70 duration-300">
                                 {lang==="ja"?"前へ":"Prev"}
                             </button>
                         </a>
                     </div>
                     <div class="flex w-full justify-center @mb:justify-end">
-                        <a href={next} class="rounded-lg w-full @mb:w-4/5 @tb:w-3/5 @lt:w-1/2 h-12 outline-none" tabindex="-1" aria-disabled="true">
+                        <a href={next} class="rounded-lg w-full @mb:w-4/5 @tb:w-3/5 @lt:w-1/2 h-12 @hs:h-10 outline-none" tabindex="-1" aria-disabled="true">
                             <button class="w-full h-full rounded-lg bg-blue-400 text-white text-xl outline-none focus:outline-2 focus:outline-offset-2 focus:outline-blue-300 disabled:opacity-50 hover:opacity-70 duration-300" id="next" disabled={disabled}>
                                 {lang==="ja"?"次へ":"Next"}
                             </button>
