@@ -1,25 +1,28 @@
 ---
 import SetupTemplate from '../../templates/SetupTemplate.astro'
-const lang = Astro.cookies.get("setup-language")?.value
-if(!Astro.cookies.has("setup-language")||!Astro.cookies.has("setup-preset"))return Astro.redirect("./preset")
+const lang = Astro.cookies.get("setup-lang")?.value
+if(Astro.cookies.has("registration"))return Astro.redirect("../")
+else if(!Astro.cookies.has("setup-lang")||!Astro.cookies.has("setup-preset"))return Astro.redirect("./preset")
 const ja = lang==="ja"||lang==="ja-JP"
 ---
 <SetupTemplate title={ja?"エディションを選んでください。":"Please select a edition."} prev="javascript:history.back()" next="./load" lang={lang!} disabled={!Astro.cookies.has("setup-edition")}>
     <script>
         const get = document.cookie.match(/setup-edition\=([^\;]*)\;*/)!
-        let selected = get?get[1].slice(1,-1):""
+        let selected = get?get[1]:""
         const btn = document.getElementById("next") as HTMLButtonElement
         document.addEventListener('astro:after-swap',()=>{
-            const btn = document.getElementById("next") as HTMLButtonElement
-            document.getElementById("Stable")!.onclick = ()=>{
-                btn.disabled = false
-                select("Stable")
-            }
-            document.getElementById("Beta")!.onclick = ()=>{
-                btn.disabled = false
-                select("Beta")
-            }
-            if(selected!="")select(selected)
+            try{
+                const btn = document.getElementById("next") as HTMLButtonElement
+                document.getElementById("Stable")!.onclick = ()=>{
+                    btn.disabled = false
+                    select("Stable")
+                }
+                document.getElementById("Beta")!.onclick = ()=>{
+                    btn.disabled = false
+                    select("Beta")
+                }
+                if(selected!="")select(selected)
+            }catch{}
         })
         window.addEventListener('focus',()=>{
             try{document.getElementById(selected)!.style.backgroundColor = window.matchMedia('(prefers-color-scheme: dark)').matches?"#708ab0":"#d0ddf0"}catch{}
@@ -35,7 +38,7 @@ const ja = lang==="ja"||lang==="ja-JP"
                 document.getElementById(target)!.style.backgroundColor = window.matchMedia('(prefers-color-scheme: dark)').matches?"#708ab0":"#d0ddf0"
                 document.getElementById(target)!.style.outline = "none"
                 document.getElementById(target)!.style.border = "solid 3px #99bbff"
-                document.cookie = `setup-edition="${target}";max-age=86400;path=/`
+                document.cookie = `setup-edition=${target};path=/`
             }catch{return}
         }
         document.getElementById("Stable")!.onclick = ()=>{

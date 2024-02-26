@@ -1,15 +1,16 @@
 ---
 import SetupTemplate from '../../templates/SetupTemplate.astro'
 const preset = ["Trial","Entry","Standard","Suite","Pro"]
-const lang = Astro.cookies.get("setup-language")?.value
-if(!Astro.cookies.has("setup-language"))return Astro.redirect("../welcome")
+const lang = Astro.cookies.get("setup-lang")?.value
+if(Astro.cookies.has("registration"))return Astro.redirect("../")
+else if(!Astro.cookies.has("setup-lang"))return Astro.redirect("../welcome")
 const ja = lang==="ja"||lang==="ja-JP"
 ---
 <SetupTemplate title={ja?"プリセットを選んでください。":"Please select a preset."} prev="../welcome" next="./edition" lang={lang!} disabled={!Astro.cookies.has("setup-preset")}>
     <script>
         const preset = ["Trial","Entry","Standard","Suite","Pro"]
         const get = document.cookie.match(/setup-preset\=([^\;]*)\;*/)!
-        let selected = get?get[1].slice(1,-1):""
+        let selected = get?get[1]:""
         const btn = document.getElementById("next") as HTMLButtonElement
         document.addEventListener('astro:after-swap',()=>{
             try{
@@ -40,7 +41,7 @@ const ja = lang==="ja"||lang==="ja-JP"
                 document.getElementById(target)!.style.backgroundColor = window.matchMedia('(prefers-color-scheme: dark)').matches?"#708ab0":"#d0ddf0"
                 document.getElementById(target)!.style.outline = "none"
                 document.getElementById(target)!.style.border = "solid 3px #99bbff"
-                document.cookie = `setup-preset="${target}";max-age=86400;path=/`
+                document.cookie = `setup-preset=${target};path=/`
             }catch{return}
         }
         preset.forEach(e => {
