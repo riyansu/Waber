@@ -3,7 +3,6 @@ import Layout from '../layouts/Layout.astro'
 import { Image } from 'astro:assets'
 import title from '../assets/title.svg'
 if(Astro.cookies.has("registration"))return Astro.redirect("../")
-export const prerender = true
 ---
 
 <script>
