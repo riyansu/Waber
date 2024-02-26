@@ -5,7 +5,7 @@ const lang = Astro.cookies.get("setup-language")?.value
 if(!Astro.cookies.has("setup-language"))return Astro.redirect("../welcome")
 const ja = lang==="ja"||lang==="ja-JP"
 ---
-<SetupTemplate title={ja?"プリセットを選んでください。":"Please select a preset."} prev="../welcome" next="./type" lang={lang!} disabled={!Astro.cookies.has("setup-preset")}>
+<SetupTemplate title={ja?"プリセットを選んでください。":"Please select a preset."} prev="../welcome" next="./edition" lang={lang!} disabled={!Astro.cookies.has("setup-preset")}>
     <script>
         const preset = ["Trial","Entry","Standard","Suite","Pro"]
         const get = document.cookie.match(/setup-preset\=([^\;]*)\;*/)!
@@ -24,7 +24,7 @@ const ja = lang==="ja"||lang==="ja-JP"
             }catch{}
         })
         window.addEventListener('focus',()=>{
-            document.getElementById(selected)!.style.backgroundColor = window.matchMedia('(prefers-color-scheme: dark)').matches?"#708ab0":"#d0ddf0"
+            try{document.getElementById(selected)!.style.backgroundColor = window.matchMedia('(prefers-color-scheme: dark)').matches?"#708ab0":"#d0ddf0"}catch{}
         })
         function select(target:string){
             try{

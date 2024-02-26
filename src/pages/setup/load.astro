@@ -1,0 +1,21 @@
+---
+import Template from "../../layouts/Template.astro"
+const lang = Astro.cookies.get("setup-language")!.value
+---
+
+<Template title="Setup" className='bg-slate-200 dark:bg-slate-700 text-gray-800 dark:text-gray-100 overflow-hidden' transition={true} language={lang}>
+    <div class="h-[100lvh] flex justify-center items-center">
+        <div class="text-center w-[100svw] @tb:w-[100svw] @lt:w-[90svw]">
+            <span class="animate-fadein">
+                <div class="flex justify-center">
+                    <div class="h-20 @tb:h-40 w-20 @tb:w-40 rounded-full border-4 border-blue-400 border-solid border-b-transparent border-l-transparent animate-[spin_0.5s_infinite_linear]" />
+                </div>
+            </span>
+        </div>
+    </div>
+</Template>
+<style>
+    img{
+        @apply select-none pointer-events-none
+    }
+</style>

@@ -4,9 +4,9 @@ const lang = Astro.cookies.get("setup-language")?.value
 if(!Astro.cookies.has("setup-language")||!Astro.cookies.has("setup-preset"))return Astro.redirect("./preset")
 const ja = lang==="ja"||lang==="ja-JP"
 ---
-<SetupTemplate title={ja?"タイプを選んでください。":"Please select a type."} prev="javascript:history.back()" next="./type" lang={lang!} disabled={!Astro.cookies.has("setup-type")}>
+<SetupTemplate title={ja?"エディションを選んでください。":"Please select a edition."} prev="javascript:history.back()" next="./load" lang={lang!} disabled={!Astro.cookies.has("setup-edition")}>
     <script>
-        const get = document.cookie.match(/setup-type\=([^\;]*)\;*/)!
+        const get = document.cookie.match(/setup-edition\=([^\;]*)\;*/)!
         let selected = get?get[1].slice(1,-1):""
         const btn = document.getElementById("next") as HTMLButtonElement
         document.addEventListener('astro:after-swap',()=>{
@@ -22,7 +22,7 @@ const ja = lang==="ja"||lang==="ja-JP"
             if(selected!="")select(selected)
         })
         window.addEventListener('focus',()=>{
-            document.getElementById(selected)!.style.backgroundColor = window.matchMedia('(prefers-color-scheme: dark)').matches?"#708ab0":"#d0ddf0"
+            try{document.getElementById(selected)!.style.backgroundColor = window.matchMedia('(prefers-color-scheme: dark)').matches?"#708ab0":"#d0ddf0"}catch{}
         })
         function select(target:string){
             try{
@@ -35,7 +35,7 @@ const ja = lang==="ja"||lang==="ja-JP"
                 document.getElementById(target)!.style.backgroundColor = window.matchMedia('(prefers-color-scheme: dark)').matches?"#708ab0":"#d0ddf0"
                 document.getElementById(target)!.style.outline = "none"
                 document.getElementById(target)!.style.border = "solid 3px #99bbff"
-                document.cookie = `setup-type="${target}";max-age=86400;path=/`
+                document.cookie = `setup-edition="${target}";max-age=86400;path=/`
             }catch{return}
         }
         document.getElementById("Stable")!.onclick = ()=>{
@@ -52,14 +52,14 @@ const ja = lang==="ja"||lang==="ja-JP"
         <button class="h-full border-gray-300 hover:bg-slate-200 dark:hover:bg-slate-500 border-4 rounded-md w-full text-lg @hs:text-base @mb:text-xl @tb:text-2xl duration-300 outline-none focus:outline outline-offset-2 focus:outline-blue-300" id="Stable">
             <div class="text-3xl @hs:text-2xl @mb:text-4xl">Stable</div>
             <hr class="border-gray-400 mx-5 my-1">
-            {ja?<>安定版です。<br>動作の安定性が確認できた機能のみを利用することができます。</>:<>This is the stable version. <br>Only functions that have been confirmed to be stable are available.</>}
+            {ja?<>安定版です。<br/>動作の安定性が確認できた機能のみを利用することができます。</>:<>This is the stable version. <br/>Only functions that have been confirmed to be stable are available.</>}
         </button>
     </div>
     <div class="p-1 @tb:p-2 h-80 @hs:h-40 @hs:py-0.3 w-full">
         <button class="h-full border-gray-300 hover:bg-slate-200 dark:hover:bg-slate-500 border-4 rounded-md w-full text-lg @hs:text-base @mb:text-xl @tb:text-2xl duration-300 outline-none focus:outline outline-offset-2 focus:outline-blue-300" id="Beta">
             <div class="text-3xl @hs:text-2xl @mb:text-4xl">Beta</div>
             <hr class="border-gray-400 mx-5 my-1">
-            {ja?<>ベータ版です。<br>最新の機能を利用できますが、バグが発生する可能性が高いです。</>:<>This is the beta version. <br>The latest features are available, but bugs are likely to occur.</>}
+            {ja?<>ベータ版です。<br/>最新の機能を利用できますが、バグが発生する可能性が高いです。</>:<>This is the beta version. <br/>The latest features are available, but bugs are likely to occur.</>}
         </button>
     </div>
 </SetupTemplate>
