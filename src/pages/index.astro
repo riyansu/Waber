@@ -3,6 +3,15 @@ if(!Astro.cookies.has("registration"))return Astro.redirect("./welcome")
 import App from '../layouts/App.astro'
 ---
 
-<App>
-	<h1>Index</h1>
+<App className='bg-slate-200 dark:bg-slate-700 text-gray-800 dark:text-gray-50'>
+    <div class="h-[100lvh] flex justify-center items-center">
+        <div class="text-3xl @mb:text-5xl text-center">
+            <div class="font-bold">
+                Home
+            </div>
+            <div class="mt-5">
+                Under Development.
+            </div>
+        </div>
+    </div>
 </App>

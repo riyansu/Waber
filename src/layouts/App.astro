@@ -3,15 +3,16 @@ interface Props {
 	title?: string;
 	className?: string;
     transition?: TransitionAnimationValue;
+	lang?: string;
 }
 
-const { title,transition,className } = Astro.props;
+const { title,transition,className,lang } = Astro.props;
 
 import { ViewTransitions } from 'astro:transitions';
 import type { TransitionAnimationValue } from 'astro';
 ---
 <!doctype html>
-<html>
+<html lang={lang!}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Waber - Easy Site Creation for Everyone." />

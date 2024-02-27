@@ -1,5 +1,4 @@
 ---
-import Template from "../../layouts/Template.astro"
 if(Astro.cookies.has("registration"))return Astro.redirect("../")
 else if(!Astro.cookies.has("setup-lang")||!Astro.cookies.has("setup-preset")||!Astro.cookies.has("setup-edition"))return Astro.redirect("../welcome")
 const lang = Astro.cookies.get("setup-lang")?.value
@@ -8,5 +7,3 @@ Astro.cookies.set("registration","completed",{path:"/",maxAge:34550000})
 return Astro.redirect("../")
 //preset, edition
 ---
-
-<Template title="Setup" className='bg-slate-200 dark:bg-slate-700 text-gray-800 dark:text-gray-100 overflow-hidden' transition={true} language={lang!} />
