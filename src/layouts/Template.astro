@@ -19,7 +19,7 @@ import { ViewTransitions } from 'astro:transitions';
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Waber {title && ` - ${title}`}</title>
-		{transition && <ViewTransitions fallback='animate'/> }
+		{transition && <ViewTransitions fallback="swap"/> }
 	</head>
 	<body class={className}>
 		<slot />
