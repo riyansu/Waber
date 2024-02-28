@@ -3,7 +3,6 @@ if(Astro.cookies.has("registration"))return Astro.redirect("../")
 else if(!Astro.cookies.has("setup-lang")||!Astro.cookies.has("setup-preset")||!Astro.cookies.has("setup-edition"))return Astro.redirect("../welcome")
 const lang = Astro.cookies.get("setup-lang")?.value
 Astro.cookies.set("lang",lang!,{path:"/",maxAge:31536000})
-Astro.cookies.set("registration","completed",{path:"/",maxAge:31536000})
 return Astro.redirect("../")
 //preset, edition
 ---
