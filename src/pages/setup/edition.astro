@@ -1,7 +1,7 @@
 ---
 import SetupTemplate from '../../templates/SetupTemplate.astro'
 const lang = Astro.cookies.get("setup-lang")?.value
-if(Astro.cookies.has("registration"))return Astro.redirect("../")
+if(Astro.cookies.has("lang"))return Astro.redirect("../")
 else if(!Astro.cookies.has("setup-lang")||!Astro.cookies.has("setup-preset"))return Astro.redirect("./preset")
 const ja = lang==="ja"||lang==="ja-JP"
 ---
