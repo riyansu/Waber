@@ -23,6 +23,7 @@ if(Astro.cookies.has("lang"))return Astro.redirect("../")
     window.onload=()=>{
         for(let i in ui[lang])document.getElementById(i)!.textContent = ui[lang][i]
         document.getElementById("main")!.style.removeProperty("visibility")
+        document.getElementById("main")!.style.display = "block"
         document.getElementById("setup")!.onclick=()=>{
             document.getElementById("main")!.classList.add("animate-fadeout")
             setTimeout(() => {
