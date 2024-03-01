@@ -23,7 +23,6 @@ if(Astro.cookies.has("lang"))return Astro.redirect("../")
     window.onload=()=>{
         for(let i in ui[lang])document.getElementById(i)!.textContent = ui[lang][i]
         document.getElementById("main")!.style.removeProperty("visibility")
-        document.getElementById("main")!.style.display = "block"
         document.getElementById("setup")!.onclick=()=>{
             document.getElementById("main")!.classList.add("animate-fadeout")
             setTimeout(() => {
@@ -38,6 +37,7 @@ if(Astro.cookies.has("lang"))return Astro.redirect("../")
             for(let i in ui[lang])document.getElementById(i)!.textContent = ui[lang][i]
         }
     }
+    window.addEventListener('pageshow', (e)=>{if (e.persisted) window.location.reload()});
 </script>
 <Layout className='bg-slate-200 dark:bg-slate-700 text-gray-800 dark:text-gray-50 overflow-hidden'>
     <span class="animate-fadein" style="visibility:hidden" id="main">
