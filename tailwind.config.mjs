@@ -10,6 +10,10 @@ export default {
 					'0%':{opacity:0},
 					'100%':{opacity:1}
 				},
+				fadeout: {
+					'0%':{opacity:1},
+					'100%':{opacity:0}
+				},
 				slidein: {
 					'0%':{opacity:0,transform:"translateY(10%)"},
 					'100%':{opacity:1,transform:"translateY(0px)"}
@@ -17,6 +21,7 @@ export default {
 			},
 			animation:{
 				fadein:'fadein 0.3s ease-out',
+				fadeout:'fadeout 0.3s ease-out',
 				slidein:'slidein 0.3s ease-out'
 			}
 		},
