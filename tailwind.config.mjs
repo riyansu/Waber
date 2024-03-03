@@ -32,7 +32,7 @@ export default {
 			// '@hl':{'raw': '(min-width:1540px) and (max-height:1024px)'},
 			'@pc': '1540px',
 			'@dp': '1920px',
-		}
+		},
 	},
 	plugins: [],
 }

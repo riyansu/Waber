@@ -1,0 +1,60 @@
+---
+import { Image } from 'astro:assets'
+import Logo from '../assets/logo.svg'
+import Template from '../layouts/Template.astro'
+Astro.cookies.set("lang",Astro.cookies.get("lang")!.value,{path:"/",maxAge:31536000})
+const pages = [["Home","Projects","Settings"],["Docs →","Form","Learn","News"]]
+
+interface Props {
+    page:string
+}
+const { page } = Astro.props
+
+export const prerender = true
+---
+
+<Template className='bg-slate-300 dark:bg-slate-600 text-gray-800 dark:text-gray-50 overflow-hidden' transition={true} title={page!=="Home" ? page:""}>
+    <div class="w-full h-10 border-b-slate-400/50 border-b">
+        <div class="ml-6 w-[50px] h-full text-left p-0.5">
+            <a href="../" class="outline-none group-focus:brightness-150 group">
+                <Image src={Logo} alt="W" class="h-full hover:brightness-105 duration-300 group-focus:brightness-105"/>
+            </a>
+        </div>
+    </div>
+    <div class="h-[calc(100lvh-40px)] justify-center items-center flex w-full">
+        <div class="w-12 @mb:w-20 @tb:w-[220px] @lt:w-[280px] h-full grid grid-rows-2">
+            <div>
+                {pages[0].map(e => 
+                    <a href={(e!=="Home")?e.toLowerCase():"../"} tabindex="-1">
+                        <button class={`h-12 text-xl w-full block py-2 border-b-slate-400/50 border-b duration-300 outline-none focus:outline -outline-offset-1 focus:outline-blue-300/50 ${page==e ? "font-semibold text-lg bg-slate-400/50":"hover:bg-slate-400/20"}`} tabindex={page==e?"-1":""}>
+                            <div class="hidden @tb:block">
+                                {e}
+                            </div>
+                        </button>
+                    </a>
+                )}
+            </div>
+            <div class="flex flex-col-reverse pb-0.5">
+                {pages[1].map(e => 
+                    <a href={(e!=="Docs →")?e.toLowerCase():"/docs"} tabindex="-1" target={e==="Docs →"?"_blank":""}>
+                        <button class={`h-12 text-xl w-full block py-2 border-t-slate-400/50 border-t duration-300 outline-none focus:outline -outline-offset-1 focus:outline-blue-300/50 ${page==e ? "font-semibold text-lg bg-slate-400/50":"hover:bg-slate-400/20"}`} tabindex={page==e?"-1":""}>
+                            <div class="hidden @tb:block">
+                                {e}
+                            </div>
+                        </button>
+                    </a>
+                )}
+            </div>
+        </div>
+        <div class="w-[calc(100%-48px)] @mb:w-[calc(100%-80px)] @tb:w-[calc(100%-220px)] @lt:w-[calc(100%-280px)] h-full">
+            <div class="h-full w-full rounded-xl bg-slate-200 dark:bg-slate-700 border-slate-400 border border-t-0 p-2">
+                <slot />
+            </div>
+        </div>
+    </div>
+</Template>
+<style>
+*{
+    @apply select-none [-webkit-user-drag:none]
+}
+</style>
