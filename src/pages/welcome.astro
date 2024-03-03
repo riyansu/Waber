@@ -27,7 +27,7 @@ if(Astro.cookies.has("lang"))return Astro.redirect("../")
             document.getElementById("main")!.classList.add("animate-fadeout")
             setTimeout(() => {
                 document.getElementById("main")!.style.display = "none"
-            }, 300);
+            }, 250);
             document.cookie = `setup-lang=${navigator.language};path=/`
         }
     }
