@@ -27,7 +27,10 @@ export const prerender = true
             <div class={`flex ${n===0 ? "flex-col":"flex-col-reverse"} pb-0.5`}>
                 {pages[n].map(e => 
                 <a href={e=="Docs →"?"/docs":(e!=="Home")?e.toLowerCase():"../"} tabindex="-1" target={e==="Docs →"?"_blank":""}>
-                    <button class={`h-12 @hs:h-6 text-xl w-full flex py-2 border-slate-400/50 border-${n===0?"b":"t"} duration-300 outline-none focus:outline -outline-offset-1 focus:outline-blue-300/50 ${page==e ? "font-semibold text-lg bg-slate-400/50":"hover:bg-slate-400/20"}`} tabindex={page==e?"-1":""}>
+                    <button class={`px-0 @tb:px-12 h-12 @hs:h-6 text-xl w-full flex justify-center py-2 border-slate-400/50 border-${n===0?"b":"t"} duration-300 outline-none focus:outline -outline-offset-1 focus:outline-blue-300/50 ${page==e ? "font-semibold text-lg bg-slate-400/50":"hover:bg-slate-400/20"}`} tabindex={page==e?"-1":""}>
+                        <div class="h-full">
+                            <Image src={import(`../assets/icons/${e=="Docs →"?"Docs":e}.svg`)} alt={e} class="h-7 @hs:h-5 w-7 @hs:w-5"/>
+                        </div>
                         <div class="hidden @hs:hidden @tb:block w-full">
                             {e}
                         </div>
