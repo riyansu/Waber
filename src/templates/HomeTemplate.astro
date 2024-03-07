@@ -3,7 +3,7 @@ import { Image } from 'astro:assets'
 import Logo from '../assets/logo.svg'
 import Template from '../layouts/Template.astro'
 Astro.cookies.set("lang",Astro.cookies.get("lang")!.value,{path:"/",maxAge:31536000})
-const pages = [["Home","Projects","Settings"],["Docs →","Form","Learn","News"]]
+const pages = [["Home","Projects","Settings"],["Docs","Form","Learn","News"]]
 
 interface Props {
     page:string
@@ -26,7 +26,7 @@ export const prerender = true
             {[0,1].map(n => 
             <div class={`flex ${n===0 ? "flex-col":"flex-col-reverse"} pb-0.5`}>
                 {pages[n].map(e => 
-                <a href={e=="Docs →"?"/docs":(e!=="Home")?e.toLowerCase():"../"} tabindex="-1" target={e==="Docs →"?"_blank":""}>
+                <a href={(e!=="Home")?e.toLowerCase():"../"} tabindex="-1" target={e==="Docs"?"_blank":""}>
                     <button class={`px-0 @hs:px-0 @tb:px-12 h-12 @hs:h-8 text-xl w-full flex justify-center py-2 border-slate-400/50 ${n===0?"border-b":"border-t"} duration-300 outline-none focus:outline -outline-offset-1 ${page==e ? "font-semibold text-lg bg-slate-400/50":"hover:bg-slate-400/20 focus:outline-blue-300/50 group"}`} tabindex={page==e?"-1":"0"}>
                         <div class="h-full">
                             <Image src={import(`../assets/icons/${e=="Docs →"?"Docs":e}.svg`)} alt={e} class="h-7 @hs:h-4 w-7 @hs:w-4 dark:invert"/>
@@ -35,6 +35,7 @@ export const prerender = true
                             {e}
                         </div>
                         <div class="pointer-events-none ml-40 @hs:ml-36 @mb:ml-48 visible @hs:visible @tb:invisible opacity-0 group-hover:opacity-100 absolute w-24 px-1 py-1 @hs:py-0 rounded duration-300 bg-white/60 dark:bg-black/30">{e}</div>
+                        {e==="Docs" && <Image src={import("../assets/icons/Window.svg")} alt="→" class="absolute ml-28 invisible @hs:invisible @tb:visible dark:invert w-4 opacity-50"/>}
                     </button>
                 </a>
                 )}
