@@ -3,7 +3,7 @@ import { Image } from 'astro:assets'
 import Logo from '../assets/logo.svg'
 import Template from '../layouts/Template.astro'
 Astro.cookies.set("lang",Astro.cookies.get("lang")!.value,{path:"/",maxAge:31536000})
-const pages = [["Home","Projects","Settings"],["Docs","Form","Learn","News"]]
+const pages = [["Home","Projects","Preference"],["Docs","Form","Learn","News"]]
 
 interface Props {
     page:string
@@ -29,7 +29,7 @@ export const prerender = true
                 <a href={(e!=="Home")?e.toLowerCase():"../"} tabindex="-1" target={e==="Docs"?"_blank":""}>
                     <button class={`px-0 @hs:px-0 @tb:px-12 h-12 @hs:h-8 text-xl w-full flex justify-center py-2 border-slate-400/50 ${n===0?"border-b":"border-t"} duration-300 outline-none focus:outline -outline-offset-1 ${page==e ? "font-semibold text-lg bg-slate-400/50":"hover:bg-slate-400/20 focus:outline-blue-300/50 group"}`} tabindex={page==e?"-1":"0"}>
                         <div class="h-full">
-                            <Image src={import(`../assets/icons/${e=="Docs →"?"Docs":e}.svg`)} alt={e} class="h-7 @hs:h-4 w-7 @hs:w-4 dark:invert"/>
+                            <Image src={import(`../assets/icons/${e=="Docs →"?"Docs":e}.svg`)} alt={""} class={`h-7 @hs:h-4 w-7 @hs:w-4 dark:invert ${page!==e && "scale-95"}`}/>
                         </div>
                         <div class="hidden @hs:hidden @tb:block w-full">
                             {e}
