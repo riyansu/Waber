@@ -1,16 +1,28 @@
 ---
 if(!Astro.cookies.has("lang"))return Astro.redirect("./welcome")
 import HomeTemplate from '../templates/HomeTemplate.astro'
+const lang = Astro.cookies.get("lang")?.value
+const ja = lang==="ja"||lang==="ja-JP"
 ---
 
 <HomeTemplate page="Home">
-    <div class="h-full w-full flex justify-center items-center">
-        <div class="text-3xl @mb:text-5xl text-center">
-            <div class="font-bold">
-                HOME
+    <div class="w-full grid grid-cols-2">
+        <div class="col-span-1 mr-1 @tb:mr-3 border-r border-solid">
+            <div class="w-full mb-7">
+                <div class="flex justify-center text-2xl mb-3">{ja ?"最近のプロジェクト":"Recent Projects"}</div>
+                <div class="flex justify-center text-2xl w-full h-[70svh] bg-white/60 rounded">
+                </div>
             </div>
-            <div class="mt-5">
-                Under Development.
+            <div class="flex justify-center w-full">
+                <button class="block w-2/3 h-16 bg-blue-200/80 dark:bg-blue-300/70 text-xl rounded-md hover:opacity-80 duration-300">
+                {ja?"新規プロジェクト":"New Project"}
+                </button>
+            </div>
+        </div>
+        <div class="col-span-1 ml-1 @tb:ml-3">
+            <div class="w-full">
+                <div class="flex justify-center text-2xl mb-3">{ja?"最新ニュース":"Recent News"}</div>
+                <div class="flex justify-center text-2xl w-full h-[84svh] bg-white/50"></div>
             </div>
         </div>
     </div>
