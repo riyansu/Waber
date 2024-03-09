@@ -27,7 +27,7 @@ export const prerender = true
             <div class={`flex ${n===0 ? "flex-col":"flex-col-reverse"} pb-0.5`}>
                 {pages[n].map(e => 
                 <a href={(e!=="Home")?e.toLowerCase():"../"} tabindex="-1" target={e==="Docs"?"_blank":""}>
-                    <button class={`px-0 @hs:px-0 @tb:px-12 h-12 @hs:h-8 text-xl w-full flex justify-center py-2 border-slate-400/50 ${n===0?"border-b":"border-t"} duration-300 outline-none focus:outline -outline-offset-1 ${page==e ? "font-semibold text-lg bg-slate-400/50":"hover:bg-slate-400/20 focus:outline-blue-300/50 group"}`} tabindex={page==e?"-1":"0"}>
+                    <button class={`px-0 @hs:px-0 @tb:px-8 @lt:px-12 h-12 @hs:h-8 text-xl w-full flex justify-center py-2 border-slate-400/50 ${n===0?"border-b":"border-t"} duration-300 outline-none focus:outline -outline-offset-1 ${page==e ? "font-semibold text-lg bg-slate-400/50":"hover:bg-slate-400/20 focus:outline-blue-300/50 group"}`} tabindex={page==e?"-1":"0"}>
                         <div class="h-full">
                             <Image src={import(`../assets/icons/${e=="Docs →"?"Docs":e}.svg`)} alt={""} class={`h-7 @hs:h-4 w-7 @hs:w-4 dark:invert ${page!==e && "scale-95"}`}/>
                         </div>
@@ -43,7 +43,7 @@ export const prerender = true
             )}
         </div>
         <div class="w-[calc(100%-48px)] @hs:w-[calc(100%-24px)] @mb:w-[calc(100%-80px)] @tb:w-[calc(100%-220px)] @lt:w-[calc(100%-280px)] h-full duration-300">
-            <div class="h-full w-full rounded-xl bg-slate-200 dark:bg-slate-700 border-slate-400 border border-t-0 p-2 @tb:p-6">
+            <div class="h-full w-full rounded-xl bg-slate-200 dark:bg-slate-700 border-slate-400 border border-t-0 p-2 @mb:p-4 @tb:p-6">
                 <slot />
             </div>
         </div>
