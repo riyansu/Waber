@@ -13,10 +13,10 @@ import { Image } from 'astro:assets'
             <div class="w-full py-2 flex mb-1">
                 <div class="w-full flex flex-row">
                     <Image src={Search} alt="?" class="h-full w-7 mr-2"/>
-                    <input type="text" class="w-2/3 border-b-2 border-b-black focus:border-b-blue-400 outline-none duration-300 text-xl px-1 bg-transparent">
+                    <input type="text" class="w-full @tb:w-4/5 @lt:w-2/3 border-b-2 border-b-gray-500 focus:border-b-blue-400 outline-none duration-300 text-xl px-1 bg-transparent">
                 </div>
-                <div class="w-full flex flex-row-reverse">
-                    <button class="h-12 w-48 text-white text-lg bg-blue-400 rounded hover:opacity-80 duration-300 focus:outline-none focus:opacity-80">{ja?"新規プロジェクト":"New Project"}</button>
+                <div class="w-full flex-row-reverse hidden @tb:flex">
+                    <button class="h-12 @tb:w-48 text-white text-lg bg-blue-400 rounded hover:opacity-80 duration-300 focus:outline-none focus:opacity-80">{ja?"新規プロジェクト":"New Project"}</button>
                 </div>
             </div>
             <div class="w-full flex justify-center text-2xl bg-slate-400/60 h-8">
@@ -24,6 +24,9 @@ import { Image } from 'astro:assets'
             <div class="w-full flex justify-center text-2xl">
                 <div class="flex justify-center text-2xl w-full h-[70svh] @hs:h-[56svh] bg-white/60 rounded">
                 </div>
+            </div>
+            <div class="w-full flex justify-center text-2xl mt-4">
+                <button class="h-12 w-4/5 @mb:w-2/3 @tb:hidden text-white text-lg bg-blue-400 rounded hover:opacity-80 duration-300 focus:outline-none focus:opacity-80">{ja?"新規プロジェクト":"New Project"}</button>
             </div>
         </div>
     </div>
