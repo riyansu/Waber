@@ -3,7 +3,7 @@ import { Image } from 'astro:assets'
 import Logo from '../assets/logo.svg'
 import Template from '../layouts/Template.astro'
 Astro.cookies.set("lang",Astro.cookies.get("lang")!.value,{path:"/",maxAge:31536000})
-const pages = [["Home","Projects","Preference"],["Docs","Form","Learn","News"]]
+const pages = [["Home","Projects","Preferences"],["Docs","Form","Learn","News"]]
 
 interface Props {
     page:string
