@@ -1,16 +1,29 @@
 ---
 if(!Astro.cookies.has("lang"))return Astro.redirect("./welcome")
 import HomeTemplate from '../templates/HomeTemplate.astro'
+const lang = Astro.cookies.get("lang")?.value
+const ja = lang==="ja"||lang==="ja-JP"
+import Search from '../assets/icons/Search.svg'
+import { Image } from 'astro:assets'
 ---
 
 <HomeTemplate page="Projects">
     <div class="h-full w-full flex justify-center items-center">
-        <div class="text-3xl @mb:text-5xl text-center">
-            <div class="font-bold">
-                PROJECTS
+        <div class="w-full mx-4">
+            <div class="w-full py-2 flex mb-1">
+                <div class="w-full flex flex-row">
+                    <Image src={Search} alt="?" class="h-full w-7 mr-2"/>
+                    <input type="text" class="w-2/3 border-b-2 border-b-black focus:border-b-blue-400 outline-none duration-300 text-xl px-1 bg-transparent">
+                </div>
+                <div class="w-full flex flex-row-reverse">
+                    <button class="h-12 w-48 text-white text-lg bg-blue-400 rounded hover:opacity-80 duration-300 focus:outline-none focus:opacity-80">{ja?"新規プロジェクト":"New Project"}</button>
+                </div>
             </div>
-            <div class="mt-5">
-                Under Development.
+            <div class="w-full flex justify-center text-2xl bg-slate-400/60 h-8">
+            </div>
+            <div class="w-full flex justify-center text-2xl">
+                <div class="flex justify-center text-2xl w-full h-[70svh] @hs:h-[56svh] bg-white/60 rounded">
+                </div>
             </div>
         </div>
     </div>
