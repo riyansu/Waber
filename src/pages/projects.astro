@@ -12,17 +12,17 @@ import { Image } from 'astro:assets'
         <div class="w-full mx-4">
             <div class="w-full py-2 flex mb-1 @hs:hidden">
                 <div class="w-full flex flex-row">
-                    <Image src={Search} alt="?" class="h-full w-7 mr-2"/>
-                    <input type="text" class="w-full @tb:w-4/5 @lt:w-2/3 border-b-2 border-b-gray-500 focus:border-b-blue-400 outline-none duration-300 text-xl px-1 bg-transparent rounded-none">
+                    <Image src={Search} alt="?" class="h-full w-7 mr-2 dark:invert"/>
+                    <input type="text" class="w-full @tb:w-4/5 @lt:w-2/3 border-b-2 border-b-gray-500 dark:border-b-gray-300 focus:border-b-blue-400 outline-none duration-300 text-xl px-1 bg-transparent rounded-none">
                 </div>
                 <div class="w-full flex-row-reverse hidden @tb:flex">
                     <button class="h-12 @tb:w-48 text-white text-lg bg-blue-400 rounded hover:opacity-80 duration-300 focus:outline-none focus:opacity-80">{ja?"新規プロジェクト":"New Project"}</button>
                 </div>
             </div>
-            <div class="w-full flex justify-center text-2xl bg-slate-400/60 h-8 @hs:h-6">
+            <div class="w-full flex justify-center text-2xl bg-slate-400/60 h-8 @hs:h-6 rounded-t">
             </div>
-            <div class="w-full flex justify-center text-2xl">
-                <div class="flex justify-center text-2xl w-full h-[70svh] @hs:h-[56svh] bg-white/60 rounded">
+            <div class="w-full flex justify-center text-2xl rounded-b">
+                <div class="flex justify-center text-2xl w-full h-[70svh] @hs:h-[56svh] bg-white/60 dark:bg-white/80 rounded-b">
                 </div>
             </div>
             <div class="w-full flex justify-center text-2xl mt-4 @hs:mt-2">
