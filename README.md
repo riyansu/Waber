@@ -18,3 +18,6 @@ Everything is just a plan. Stay tuned!
 Only modern browsers are supported.
 ## Author
 Riyansu
+
+## Status
+Development Stopped.
