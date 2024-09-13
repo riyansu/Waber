@@ -20,4 +20,4 @@ Only modern browsers are supported.
 Riyansu
 
 ## Status
-Development Stopped.
+Sorry, Development is Stopped.
